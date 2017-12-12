@@ -30,35 +30,47 @@ cd dog-project
 
 4. Donwload the [VGG-16 bottleneck features](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogVGG16Data.npz) for the dog dataset.  Place it in the repo, at location `path/to/dog-project/bottleneck_features`.
 
-5. Create (and activate) a new environment with Python 3.6.
+5. (Optional) __If you plan to install TensorFlow with GPU support on your local machine__, follow [the guide](https://www.tensorflow.org/install/) to install the necessary NVIDIA software on your system.  If you are using an EC2 GPU instance, you can skip this step.
 
-	- __Linux__ or __Mac__: 
+6. (Optional) **If you are running the project on your local machine (and not using AWS)**, create (and activate) a new environment.
+
+	- __Linux__ (to install with __GPU support__, change `requirements/dog-linux.yml` to `requirements/dog-linux-gpu.yml`): 
 	```
-	conda create --name dog-project python=3.6
+	conda env create -f requirements/dog-linux.yml
 	source activate dog-project
 	```  
-	- __Windows__: 
+	- __Mac__ (to install with __GPU support__, change `requirements/dog-mac.yml` to `requirements/dog-mac-gpu.yml`): 
 	```
-	conda create --name dog-project python=3.6
+	conda env create -f requirements/dog-mac.yml
+	source activate dog-project
+	```  
+	- __Windows__ (to install with __GPU support__, change `requirements/dog-windows.yml` to `requirements/dog-windows-gpu.yml`):  
+	```
+	conda env create -f requirements/dog-windows.yml
 	activate dog-project
 	```
+	
+7. (Optional) **If you are running the project on your local machine (and not using AWS)** and Step 6 throws errors, try this __alternative__ step to create your environment.
 
-6. Install a few pip packages.
+	- __Linux__ or __Mac__ (to install with __GPU support__, change `requirements/requirements.txt` to `requirements/requirements-gpu.txt`): 
+	```
+	conda create --name dog-project python=3.5
+	source activate dog-project
+	pip install -r requirements/requirements.txt
+	```  
+	- __Windows__ (to install with __GPU support__, change `requirements/requirements.txt` to `requirements/requirements-gpu.txt`):  
+	```
+	conda create --name dog-project python=3.5
+	activate dog-project
+	pip install -r requirements/requirements.txt
+	```
+	
+8. (Optional) **If you are using AWS**, install Tensorflow.
 ```
-pip install -r requirements.txt
+sudo python3 -m pip install -r requirements/requirements-gpu.txt
 ```
-
-7. Install TensorFlow. 
-	- Option 1: __To install TensorFlow with GPU support__, follow [the guide](https://www.tensorflow.org/install/) to install the necessary NVIDIA software on your system.  If you are using an EC2 GPU instance, you can skip this step and only need to install the `tensorflow-gpu` package:
-		```
-		pip install tensorflow-gpu==1.1.0
-		```
-	- Option 2: __To install TensorFlow with CPU support only__ on a local machine:
-		```
-		pip install tensorflow==1.1.0
-		```
-
-8. Switch [Keras backend](https://keras.io/backend/) to TensorFlow.
+	
+9. Switch [Keras backend](https://keras.io/backend/) to TensorFlow.
 	- __Linux__ or __Mac__: 
 		```
 		KERAS_BACKEND=tensorflow python -c "from keras import backend"
@@ -69,13 +81,17 @@ pip install -r requirements.txt
 		python -c "from keras import backend"
 		```
 
-9. Create an [IPython kernel](http://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the `dog-project` environment.  Open the notebook.
+10. (Optional) **If you are running the project on your local machine (and not using AWS)**, create an [IPython kernel](http://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the `dog-project` environment. 
 ```
 python -m ipykernel install --user --name dog-project --display-name "dog-project"
+```
+
+11. Open the notebook.
+```
 jupyter notebook dog_app.ipynb
 ```
 
-10. Before running code, change the kernel to match the dog-project environment by using the drop-down menu (**Kernel > Change kernel > dog-project**). Then, follow the instructions in the notebook.
+12. (Optional) **If you are running the project on your local machine (and not using AWS)**, before running code, change the kernel to match the dog-project environment by using the drop-down menu (**Kernel > Change kernel > dog-project**). Then, follow the instructions in the notebook.
 
 __NOTE:__ While some code has already been implemented to get you started, you will need to implement additional functionality to successfully answer all of the questions included in the notebook. __Unless requested, do not modify code that has already been included.__
 
